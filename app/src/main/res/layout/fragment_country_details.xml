@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.example.countries.presentation.countrydetails.CountryDetailsViewModel" />
+
+        <variable
+            name="viewModel"
+            type="CountryDetailsViewModel" />
+
+        <variable
+            name="view"
+            type="android.view.View" />
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.example.countries.presentation.countrydetails.CountryDetailsFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/countries_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:visibility="@{viewModel.progressBarVisibility ? view.GONE : view.VISIBLE}"
+            tools:listitem="@layout/item_country" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.progressBarVisibility ? view.VISIBLE : view.GONE}"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="no borders with other countries"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.hasBorders ? view.GONE : view.VISIBLE}"
+            />
+
+
+    </FrameLayout>
+</layout>
